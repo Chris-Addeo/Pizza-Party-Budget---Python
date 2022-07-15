@@ -1,0 +1,34 @@
+#User input
+budget = float(input("Enter budget for your party: "))
+slice_price = float(input("Cost per slice of pizza: "))
+pie_price = float(input("Cost per whole pizza pie (8 slices): "))
+people = int(input("How many people will be attending your party? "))
+print()
+
+#Create loops for number of pizza per person
+total_slices = 0
+for i in range(1, people+1):
+    slices_str = "Enter number of slices for person #" + str(i) + ": "
+    valid = False
+    while valid == False:
+        slices = int(input(slices_str))
+        if slices >= 0:
+            valid = True
+        else:
+            print("Invalid, enter a positive number of slices")
+    total_slices += slices
+
+#Conducting the math required for the output
+pies = total_slices//8
+single_slices =  total_slices % 8
+total_cost = pies*pie_price + single_slices*slice_price
+
+#Output of the program
+print()
+print("You would need to purchase", pies, "pies and", single_slices, "slices")
+if total_cost > budget:
+    print("This would put you over budget by", total_cost - budget)
+elif total_cost == budget:
+    print("The price is the same as your budget, so you won't have any money left over.")
+else:
+    print("You will still have", budget - total_cost, "left after your order")
